@@ -14,6 +14,7 @@ api = tweepy.API(auth)
 
 
 def search_twitter(arkian,searchcriteria,api,rts):
+    arkian = arkian.replace("@","")
 
     tweets = api.user_timeline(screen_name=arkian, 
                             # 200 is the maximum allowed count
