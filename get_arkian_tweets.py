@@ -16,6 +16,7 @@ api = tweepy.API(auth)
 def search_twitter(arkian,searchcriteria,api,rts):
     arkian = arkian.replace("@","")
     user = api.get_user(arkian)
+
     tweets = api.user_timeline(screen_name=user, 
                             # 200 is the maximum allowed count
                             count=200,
@@ -46,5 +47,6 @@ retweets = st.sidebar.checkbox("Include retweets?")
 search = st.sidebar.button("Search")
 
 if search:
+    st.write(str(arkian))
     search_twitter(arkian, searchcriteria, api, retweets)
 
