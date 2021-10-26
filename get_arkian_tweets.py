@@ -49,10 +49,10 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
                 # print(info.full_text)
                 # print("\n")
         if len(tweets_to_print) == 0:
-            st.write("Retrieved " + str(len(total_tweets)) + " total tweets in selected date range, and searched them for keyword '" + searchcriteria + "'. Found " + str(len(tweets_to_print)))
+            st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. None were found")
             st.write("No tweets with '" + str(searchcriteria) + "' were found in those tweets of @" + arkian)
         else:
-            st.write("Retrieved " + str(len(total_tweets)) + " total tweets in selected date range, and searched them for keyword '" + searchcriteria + "'. Found " + str(len(tweets_to_print)))
+            st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. Found" + str(len(tweets_to_print)))
             for tweet in tweets_to_print:
                 st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
     except:
