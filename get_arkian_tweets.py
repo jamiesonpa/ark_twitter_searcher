@@ -34,7 +34,7 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
     total_tweets = []
     for info in tweets:
         total_tweets.append(info)
-        if info.full_text.find(searchcriteria) != -1:
+        if (info.full_text.lower()).find(searchcriteria.lower()) != -1:
             created_date = str(info.created_at).split(" ")[0]
             tweet_date = datetime.strptime(created_date,"%Y-%m-%d").date()
             #st.write("created date is of type " + str(type(tweet_date)))
