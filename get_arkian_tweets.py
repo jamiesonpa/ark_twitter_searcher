@@ -2,7 +2,7 @@ import streamlit as st
 import tweepy
 import datetime
 from datetime import datetime
-
+from datetime import timedelta
 
 api_key = st.secrets["api_key"]
 api_secret = st.secrets["api_secret"]
