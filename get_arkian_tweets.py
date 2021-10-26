@@ -32,7 +32,7 @@ def search_twitter(arkian,searchcriteria,api,rts):
             # print(info.full_text)
             # print("\n")
     if len(tweets_to_print) == 0:
-        st.print("No tweets with '" + str(searchcriteria) + "' were found in the last 200 tweets of @" + arkian)
+        st.write("No tweets with '" + str(searchcriteria) + "' were found in the last 200 tweets of @" + arkian)
     else:
         for tweet in tweets_to_print:
             st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
