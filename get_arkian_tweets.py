@@ -51,6 +51,6 @@ retweets = st.sidebar.checkbox("Include retweets?")
 search = st.sidebar.button("Search")
 
 if search:
-    st.write(str(arkian))
+    st.write("Searching "+str(arkian)+"...")
     search_twitter(arkian, searchcriteria, api, retweets)
 
