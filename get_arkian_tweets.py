@@ -2,7 +2,6 @@ import streamlit as st
 import tweepy
 import datetime
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 
 api_key = st.secrets["api_key"]
@@ -59,7 +58,7 @@ arkian = st.sidebar.text_input("twitter handle of ARK employee")
 searchcriteria = st.sidebar.text_input("text to search")
 retweets = st.sidebar.checkbox("Include retweets?")
 
-one_year_ago = datetime.now() - relativedelta(years=1)
+one_year_ago = datetime.now() - datetime.timedelta(days=365)
 start_date = st.sidebar.date_input("From", value = one_year_ago)
 end_date = st.sidebar.date_input("To")
 search = st.sidebar.button("Search")
