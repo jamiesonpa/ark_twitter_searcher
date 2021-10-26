@@ -14,13 +14,12 @@ api = tweepy.API(auth)
 
 
 def search_twitter(arkian,searchcriteria,api,rts):
-    arkian = arkian.replace("@","")
     user = api.get_user(arkian)
 
     tweets = api.user_timeline(screen_name=user, 
                             # 200 is the maximum allowed count
                             count=200,
-                            include_rts = retweets,
+                            include_rts = rts,
                             # Necessary to keep full_text 
                             # otherwise only the first 140 words are extracted
                             tweet_mode = 'extended'
