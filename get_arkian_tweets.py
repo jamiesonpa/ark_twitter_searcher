@@ -56,7 +56,6 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
             for tweet in tweets_to_print:
                 st.write("------------------------------------")
                 st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
-                st.write("------------------------------------")
     except:
         st.write("Error occurred, please check to make sure that your inputs are good.")
 
@@ -73,6 +72,6 @@ search = st.sidebar.button("Search")
 
 
 if search:
-    st.write("Searching "+str(arkian)+" for tweets including the term '" +searchcriteria+"'...")
+    st.write("Searching "+str(arkian)+" for tweets from " + str(start_date.strftime("%Y-%m-%d")) + " to " + str(end_date.strftime("%Y-%m-%d")) + " including the term '" +searchcriteria+"'...")
     search_twitter(arkian, searchcriteria, api, retweets, start_date, end_date)
 
