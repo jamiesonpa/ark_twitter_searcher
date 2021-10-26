@@ -1,11 +1,12 @@
 import streamlit as st
 import tweepy
 
-api_key = "dHeErSR4abzN0dkE0A5t5RAZc"
-api_secret = "ojdTqtit8lu7fr6aJRJk3esDjqPztlay0UFJOF3Giuy8euG2Wa"
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAD6fVAEAAAAAwECVso6ShKF9u2%2Bi33ZGSH3NvCA%3DtqnCV1LuxS1K68NO21RKoXrPMR5KGwPI7gaisNxiGx6uzObjdS"
-access_token = "1425496134299095042-Y890IXI5Ydhisb1POWHNaS5jLf5leH"
-access_secret = "aVIteFYdwhTkqESbJmW6JV5pDclSgAvQg32OBzuFD43z3"
+api_key = st.secrets["api_key"]
+api_secret = st.secrets["api_secret"]
+bearer_token = st.secrets["bearer_token"]
+access_token = st.secrets["access_token"]
+access_secret = st.secrets["access_secret"]
+
 
 auth = tweepy.OAuthHandler(api_key, api_secret)
 auth.set_access_token(access_token, access_secret)
