@@ -1,6 +1,7 @@
 import streamlit as st
 import tweepy
-
+import datetime
+from datetime import datetime
 api_key = st.secrets["api_key"]
 api_secret = st.secrets["api_secret"]
 bearer_token = st.secrets["bearer_token"]
@@ -13,7 +14,7 @@ auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
 
-def search_twitter(arkian,searchcriteria,api,rts):
+def search_twitter(arkian,searchcriteria,api,rts, start, end):
     arkian = arkian.replace("@","")
 
     tweets = tweepy.Cursor(api.user_timeline, screen_name=arkian, tweet_mode="extended", include_rts=rts).items()
@@ -30,7 +31,13 @@ def search_twitter(arkian,searchcriteria,api,rts):
     for info in tweets:
         total_tweets.append(info)
         if info.full_text.find(searchcriteria) != -1:
-            tweets_to_print.append(info)
+            created_date = str(info.created_at).split(" ")[0]
+            tweet_date = datetime.strptime(created_date,"%Y-%M-%D")
+            if start <= tweet_date <= end:
+                tweets_to_print.append(info)
+            else:
+                pass
+
             # print("ID: {}".format(info.id))
             # print(info.created_at)
             # print(info.full_text)
@@ -48,9 +55,12 @@ st.title("ARK Twitter Searcher v0.1")
 arkian = st.sidebar.text_input("twitter handle of ARK employee")
 searchcriteria = st.sidebar.text_input("text to search")
 retweets = st.sidebar.checkbox("Include retweets?")
+start_date = st.sidebar.date_input("From")
+end_date = st.sidebar.date_input("To")
 search = st.sidebar.button("Search")
+
 
 if search:
     st.write("Searching "+str(arkian)+"...")
-    search_twitter(arkian, searchcriteria, api, retweets)
+    search_twitter(arkian, searchcriteria, api, retweets, start_date, end_date)
 
