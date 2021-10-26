@@ -54,7 +54,9 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
         else:
             st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. Found " + str(len(tweets_to_print)) + " tweets with positive match")
             for tweet in tweets_to_print:
+                st.write("------------------------------------")
                 st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
+                st.write("------------------------------------")
     except:
         st.write("Error occurred, please check to make sure that your inputs are good.")
 
