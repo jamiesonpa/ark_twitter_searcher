@@ -34,7 +34,8 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
         tweets_to_print = []
         total_tweets = []
         for info in tweets:
-            total_tweets.append(info)
+            created_date = str(info.created_at).split(" ")[0]
+            total_tweets.append(created_date)
             if (info.full_text.lower()).find(searchcriteria.lower()) != -1:
                 created_date = str(info.created_at).split(" ")[0]
                 tweet_date = datetime.strptime(created_date,"%Y-%m-%d").date()
@@ -51,11 +52,16 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
         if len(tweets_to_print) == 0:
             st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. None were found")
             st.write("No tweets with '" + str(searchcriteria) + "' were found in those tweets of @" + arkian)
-            st.write("The earliest tweet retrieved was from " + str(total_tweets[-1].created_at) +".")
+            try:
+                st.write("The earliest tweet retrieved was from " + str(total_tweets[-1]) +".")
+            except:
+                pass
         else:
             st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. Found " + str(len(tweets_to_print)) + " tweets with positive match")
-            st.write("The earliest tweet retrieved was from " + str(total_tweets[-1].created_at) +".")
-
+            try:
+                st.write("The earliest tweet retrieved was from " + str(total_tweets[-1]) +".")
+            except:
+                pass
             for tweet in tweets_to_print:
                 st.write("------------------------------------")
                 st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
