@@ -52,7 +52,7 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
             st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. None were found")
             st.write("No tweets with '" + str(searchcriteria) + "' were found in those tweets of @" + arkian)
         else:
-            st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. Found" + str(len(tweets_to_print)))
+            st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched those within the selected date range for keyword '" + searchcriteria + "'. Found " + str(len(tweets_to_print)) + " tweets with positive match")
             for tweet in tweets_to_print:
                 st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
     except:
@@ -71,6 +71,6 @@ search = st.sidebar.button("Search")
 
 
 if search:
-    st.write("Searching "+str(arkian)+"...")
+    st.write("Searching "+str(arkian)+" for tweets including the term '" +searchcriteria+"'...")
     search_twitter(arkian, searchcriteria, api, retweets, start_date, end_date)
 
