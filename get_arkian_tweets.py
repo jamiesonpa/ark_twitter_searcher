@@ -49,7 +49,7 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
             # print("\n")
     if len(tweets_to_print) == 0:
         st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched them for keyword '" + searchcriteria + "'.")
-        st.write("No tweets with '" + str(searchcriteria) + "' were found in the last 200 tweets of @" + arkian)
+        st.write("No tweets with '" + str(searchcriteria) + "' were found in those tweets of @" + arkian)
     else:
         st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched them for keyword '" + searchcriteria + "'.")
         for tweet in tweets_to_print:
