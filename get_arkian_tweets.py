@@ -16,16 +16,19 @@ api = tweepy.API(auth)
 def search_twitter(arkian,searchcriteria,api,rts):
     arkian = arkian.replace("@","")
 
-    tweets = api.user_timeline(screen_name=arkian, 
-                            # 200 is the maximum allowed count
-                            count=200,
-                            include_rts = rts,
-                            # Necessary to keep full_text 
-                            # otherwise only the first 140 words are extracted
-                            tweet_mode = 'extended'
-                            )
+    tweets = tweepy.Cursor(api.user_timeline, screen_name=arkian, tweet_mode="extended", include_rts=rts).items()
+    # tweets = api.user_timeline(screen_name=arkian, 
+    #                         # 200 is the maximum allowed count
+    #                         count=200,
+    #                         include_rts = rts,
+    #                         # Necessary to keep full_text 
+    #                         # otherwise only the first 140 words are extracted
+    #                         tweet_mode = 'extended'
+    #                         )
     tweets_to_print = []
+    total_tweets = []
     for info in tweets:
+        total_tweets.append(info)
         if info.full_text.find(searchcriteria) != -1:
             tweets_to_print.append(info)
             # print("ID: {}".format(info.id))
@@ -33,8 +36,10 @@ def search_twitter(arkian,searchcriteria,api,rts):
             # print(info.full_text)
             # print("\n")
     if len(tweets_to_print) == 0:
+        st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched them for keyword '" + searchcriteria + "'.")
         st.write("No tweets with '" + str(searchcriteria) + "' were found in the last 200 tweets of @" + arkian)
     else:
+        st.write("Retrieved " + str(len(total_tweets)) + " total tweets, and searched them for keyword '" + searchcriteria + "'.")
         for tweet in tweets_to_print:
             st.write("["+str(tweet.created_at) + "] @" + arkian + ": " + str(tweet.full_text))
 
