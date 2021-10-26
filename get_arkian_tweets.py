@@ -34,9 +34,10 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
         total_tweets.append(info)
         if info.full_text.find(searchcriteria) != -1:
             created_date = str(info.created_at).split(" ")[0]
-            tweet_date = datetime.strptime(created_date,"%Y-%m-%d")
-            d = datetime.datetime(tweet_date.year, tweet_date.month, tweet_date.day)
-            if start <= d <= end:
+            tweet_date = datetime.strptime(created_date,"%Y-%m-%d").date
+            start_date = datetime.date(start.year, start.month, start.day)
+            end_date = datetime.date(end.year,end.month,end.day)
+            if start_date <= tweet_date <= end_date:
                 tweets_to_print.append(info)
             else:
                 pass
