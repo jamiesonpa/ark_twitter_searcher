@@ -14,9 +14,8 @@ api = tweepy.API(auth)
 
 
 def search_twitter(arkian,searchcriteria,api,rts):
-    user = api.get_user(arkian)
 
-    tweets = api.user_timeline(screen_name=user, 
+    tweets = api.user_timeline(screen_name=arkian, 
                             # 200 is the maximum allowed count
                             count=200,
                             include_rts = rts,
