@@ -18,6 +18,8 @@ api = tweepy.API(auth)
 
 def search_twitter(arkian,searchcriteria,api,rts, start, end):
     arkian = arkian.replace("@","")
+    st.write("start date is of type: " + str(type(start)))
+    st.write("end date is of type: " + str(type(end)))
 
     tweets = tweepy.Cursor(api.user_timeline, screen_name=arkian, tweet_mode="extended", include_rts=rts).items()
     # tweets = api.user_timeline(screen_name=arkian, 
@@ -34,6 +36,8 @@ def search_twitter(arkian,searchcriteria,api,rts, start, end):
         total_tweets.append(info)
         if info.full_text.find(searchcriteria) != -1:
             created_date = str(info.created_at).split(" ")[0]
+            tweet_date = datetime.strptime(created_date,"%Y-%m-%d")
+            st.write("created date is of type " + str(type(tweet_date)))
             start_date = datetime.datetime(start.year, start.month, start.day)
             end_date = datetime.datetime(end.year, end.month, end.day)
             tweet_date = datetime.strptime(created_date,"%Y-%m-%d")
